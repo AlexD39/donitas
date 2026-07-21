@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: donitas_anita_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: donitas_anita
+      POSTGRES_USER: donitas_user
+      POSTGRES_PASSWORD: donitas_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - donitas_anita_data:/var/lib/postgresql/data
+
+volumes:
+  donitas_anita_data:

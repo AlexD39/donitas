@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RolUsuario {
+  ADMIN
+}
+
+model Usuario {
+  id           Int        @id @default(autoincrement())
+  nombre       String     @db.VarChar(100)
+  email        String     @unique @db.VarChar(160)
+  passwordHash String     @map("password_hash") @db.VarChar(255)
+  rol          RolUsuario @default(ADMIN)
+  activo       Boolean    @default(true)
+  ultimoAcceso DateTime?  @map("ultimo_acceso")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  @@map("usuarios")
+}
+
+model Categoria {
+  id          Int        @id @default(autoincrement())
+  nombre      String     @unique @db.VarChar(100)
+  slug        String     @unique @db.VarChar(120)
+  descripcion String?
+  activa      Boolean    @default(true)
+  orden       Int        @default(0)
+  productos   Producto[]
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+
+  @@map("categorias")
+}
+
+model Producto {
+  id               Int     @id @default(autoincrement())
+  nombre           String  @db.VarChar(120)
+  slug             String  @unique @db.VarChar(150)
+  descripcionCorta String? @map("descripcion_corta") @db.VarChar(220)
+  descripcion      String?
+  ingredientes     String?
+  presentacion     String? @db.VarChar(120)
+  precio           Decimal @db.Decimal(10, 2)
+  imagen           String?
+  imagenPublicId   String? @map("imagen_public_id")
+  disponible       Boolean @default(true)
+  destacado        Boolean @default(false)
+
+  categoriaId Int?       @map("categoria_id")
+  categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([categoriaId])
+  @@index([disponible, destacado])
+  @@map("productos")
+}
+
+model Tienda {
+  id           Int     @id @default(1)
+  nombre       String  @db.VarChar(120)
+  eslogan      String? @db.VarChar(200)
+  introduccion String?
+  descripcion  String?
+
+  logo            String?
+  logoPublicId    String? @map("logo_public_id")
+  portada         String?
+  portadaPublicId String? @map("portada_public_id")
+
+  whatsapp        String   @db.VarChar(20)
+  telefono        String?  @db.VarChar(20)
+  direccion       String?
+  horarios        String?
+  facebook        String?
+  instagram       String?
+  moneda          String   @default("MXN") @db.VarChar(10)
+  mensajeWhatsapp String?  @map("mensaje_whatsapp")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("tienda")
+}
