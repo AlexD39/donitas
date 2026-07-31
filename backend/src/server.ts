@@ -5,11 +5,15 @@ import { prisma } from "./config/prisma.js";
 async function main(): Promise<void> {
   await prisma.$connect();
 
-  const server = app.listen(env.PORT, () => {
+const server = app.listen(
+  env.PORT,
+  "0.0.0.0",
+  () => {
     console.log(
       `🍩 API de Donitas Anita: http://localhost:${env.PORT}`,
     );
-  });
+  },
+);
 
   async function shutdown(signal: string): Promise<void> {
     console.log(`\nCerrando servidor por ${signal}...`);
