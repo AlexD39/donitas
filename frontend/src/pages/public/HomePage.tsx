@@ -55,8 +55,29 @@ export function HomePage() {
         ]);
 
         setTienda(storeResponse.data);
-        setProductos(productsResponse.data);
-        setCategorias(categoriesResponse.data);
+
+if (Array.isArray(productsResponse.data)) {
+  setProductos(productsResponse.data);
+} else {
+  console.error(
+    "Respuesta inválida de productos:",
+    productsResponse.data,
+  );
+
+  setProductos([]);
+}
+
+if (Array.isArray(categoriesResponse.data)) {
+  setCategorias(categoriesResponse.data);
+} else {
+  console.error(
+    "Respuesta inválida de categorías:",
+    categoriesResponse.data,
+  );
+
+  setCategorias([]);
+}
+
       } catch (requestError) {
         setError(getApiError(requestError));
       } finally {
