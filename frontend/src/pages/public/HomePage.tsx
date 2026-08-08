@@ -103,7 +103,7 @@ if (Array.isArray(categoriesResponse.data)) {
     return (
       <main className="screen-center public-loading">
         <div className="loader" />
-        <p>Preparando algo dulce...</p>
+        <p>Preparando nuestro catálogo...</p>
       </main>
     );
   }
@@ -134,7 +134,7 @@ if (Array.isArray(categoriesResponse.data)) {
             <img src={tienda.logo} alt={tienda.nombre} />
           ) : (
             <span className="public-logo-fallback">
-              🍩
+              PA
             </span>
           )}
 
@@ -179,37 +179,37 @@ if (Array.isArray(categoriesResponse.data)) {
           }
         >
           <div className="hero-content">
-            <span className="hero-chip">
-              🍩 Preparadas con cariño
-            </span>
+<span className="hero-chip">
+  Hechas a mano con amor
+</span>
 
-            <h1>
-              Un momento dulce comienza con una dona.
-            </h1>
+<h1>
+  Pulseras Artesanales
+</h1>
 
-            <p>
-              {tienda.introduccion ??
-                "Donitas artesanales, frescas y preparadas para endulzar tus mejores momentos."}
-            </p>
+<p>
+  {tienda.introduccion ??
+    "Diseños únicos hechos a mano para regalar, compartir y acompañar cada momento especial."}
+</p>
 
-            <div className="hero-actions">
-              <a
-                className="button button-primary"
-                href="#productos"
-              >
-                Ver nuestras donas
-              </a>
+<div className="hero-actions">
+  <a
+    className="button button-primary"
+    href="#productos"
+  >
+    Ver nuestras pulseras
+  </a>
 
-              <a
-                className="button button-light"
-                href={generalWhatsapp}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircle size={19} />
-                Contactar
-              </a>
-            </div>
+  <a
+    className="button button-light"
+    href={generalWhatsapp}
+    target="_blank"
+    rel="noreferrer"
+  >
+    <MessageCircle size={19} />
+    Contactar
+  </a>
+</div>
           </div>
         </section>
 
@@ -218,13 +218,18 @@ if (Array.isArray(categoriesResponse.data)) {
           id="productos"
         >
           <div className="section-heading">
-            <p className="eyebrow">Nuestro catálogo</p>
-            <h2>Elige tu favorita</h2>
-            <p>
-              Descubre sabores clásicos, especiales y
-              paquetes para compartir.
-            </p>
-          </div>
+  <p className="eyebrow">Nuestro catálogo</p>
+
+  <h2>
+    Encuentra tu favorita
+  </h2>
+
+  <p>
+    Descubre pulseras artesanales creadas para regalar,
+    compartir y acompañar momentos especiales.
+  </p>
+</div>
+
 
           <div className="category-filters">
             <button
@@ -285,7 +290,7 @@ if (Array.isArray(categoriesResponse.data)) {
                       />
                     ) : (
                       <div className="image-placeholder huge">
-                        🍩
+                        Sin imagen
                       </div>
                     )}
                   </button>
@@ -294,8 +299,7 @@ if (Array.isArray(categoriesResponse.data)) {
                     <div className="public-product-title">
                       <div>
                         <small>
-                          {producto.categoria?.nombre ??
-                            "Donitas"}
+                          {producto.categoria?.nombre ?? "Pulseras"}
                         </small>
                         <h3>{producto.nombre}</h3>
                       </div>
@@ -307,7 +311,7 @@ if (Array.isArray(categoriesResponse.data)) {
 
                     <p>
                       {producto.descripcionCorta ??
-                        "Dona artesanal preparada con mucho cariño."}
+                        "Pulsera artesanal elaborada a mano con mucho cariño."}
                     </p>
 
                     <button
@@ -330,20 +334,23 @@ if (Array.isArray(categoriesResponse.data)) {
           className="about-section"
           id="nosotros"
         >
-          <div className="about-decoration">🍩</div>
+          <div className="about-decoration">
+  <span>Hecho a mano</span>
+</div>
 
           <div>
-            <p className="eyebrow">Sobre nosotros</p>
-            <h2>
-              Donitas hechas para compartir momentos
-              felices
-            </h2>
+<p className="eyebrow">
+  Sobre nosotros
+</p>
 
-            <p>
-              {tienda.descripcion ??
-                "En Donitas Anita elaboramos productos frescos, deliciosos y preparados con dedicación."}
-            </p>
+<h2>
+  Artesanía que conecta corazones
+</h2>
 
+<p>
+  {tienda.descripcion ??
+    "Cada pulsera es elaborada a mano con dedicación, cuidando cada detalle para crear una pieza especial y única."}
+</p>
             <a
               className="button button-primary"
               href={generalWhatsapp}
